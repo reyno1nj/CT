@@ -2,6 +2,7 @@
 
 angular.module('MainCtrl', []).controller('MainController', function($scope) {
 
-    $scope.tagline = 'not sure what this is for';   
+
+    $scope.tagline = 'tweets from db';   
 
 });

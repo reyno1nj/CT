@@ -5,7 +5,26 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
+var Twitter = require('twitter');
 
+var client = new Twitter({
+  consumer_key: 'wE9ShFch9jvpKUVj4lWjGC4lz',
+  consumer_secret: '8hZDSQnTA0vikfPXVJnUflpm34iCNLFk055wvTpSUQ8tXOYjDR',
+  access_token_key: '712102656307757056-CZmHQ0w4Jwwq0dX4GfIHycXU2GDEp59',
+  access_token_secret: 'uJPSKjHIlCbCU03Vl1yDqJnMWgDRkwO7iigKLJV2MYQnU'
+});
+
+client.stream('statuses/filter', {track: 'Trump'}, function(stream) {
+  stream.on('data', function(tweet) {
+    console.log(tweet.favorites);
+  });
+ 
+  stream.on('error', function(error) {
+  	console.log("error");
+    throw error;
+  });
+});
 //configuration
 var db = require('./config/db');
 
@@ -13,7 +32,7 @@ var db = require('./config/db');
 var port = process.env.PORT || 8080;
 
 //connect to mongodb
-//mongoose.connect(db.url);
+mongoose.connect(db.url);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
