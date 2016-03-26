@@ -8,23 +8,6 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var Twitter = require('twitter');
 
-var client = new Twitter({
-  consumer_key: 'wE9ShFch9jvpKUVj4lWjGC4lz',
-  consumer_secret: '8hZDSQnTA0vikfPXVJnUflpm34iCNLFk055wvTpSUQ8tXOYjDR',
-  access_token_key: '712102656307757056-CZmHQ0w4Jwwq0dX4GfIHycXU2GDEp59',
-  access_token_secret: 'uJPSKjHIlCbCU03Vl1yDqJnMWgDRkwO7iigKLJV2MYQnU'
-});
-
-client.stream('statuses/filter', {track: 'Trump'}, function(stream) {
-  stream.on('data', function(tweet) {
-    console.log(tweet.favorites);
-  });
- 
-  stream.on('error', function(error) {
-  	console.log("error");
-    throw error;
-  });
-});
 //configuration
 var db = require('./config/db');
 
@@ -62,3 +45,31 @@ console.log('Magic happens on port ' + port);
 
 // expose app           
 exports = module.exports = app; 
+
+var TweetModel = require('./app/models/tweet');
+
+var client = new Twitter({
+  consumer_key: 'wE9ShFch9jvpKUVj4lWjGC4lz',
+  consumer_secret: '8hZDSQnTA0vikfPXVJnUflpm34iCNLFk055wvTpSUQ8tXOYjDR',
+  access_token_key: '712102656307757056-CZmHQ0w4Jwwq0dX4GfIHycXU2GDEp59',
+  access_token_secret: 'uJPSKjHIlCbCU03Vl1yDqJnMWgDRkwO7iigKLJV2MYQnU'
+});
+
+client.stream('statuses/filter', {track: 'Trump'}, function(stream) {
+  stream.on('data', function(tweet) {
+    //console.log(tweet.text);
+    var newTweet = new TweetModel({
+      name: tweet.text
+    });
+    // newTweet.save(function(err){
+    //   if (err) throw err;
+
+    //   console.log('Tweet created');
+    // });
+  });
+ 
+  stream.on('error', function(error) {
+    console.log("error");
+    throw error;
+  });
+});

@@ -10,8 +10,8 @@
         })
 
         // tweets page that will use the TweetController
-        .when('/tweets', {
-            templateUrl: 'views/tweet.html',
+        .when('/Tweets', {
+            templateUrl: 'views/tweets.html',
             controller: 'TweetController'
         });
 

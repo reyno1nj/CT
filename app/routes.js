@@ -7,12 +7,13 @@ var Tweet = require('./models/tweet');
 		//server routes
 
 		// api route
-		app.get('/api/tweets', function(req, res){
+		app.get('/api/tweet', function(req, res){
 			Tweet.find(function(err, tweets){
 				//if there's an err, return
 				if(err)
 					res.send(err);
 				res.json(tweets);
+				console.log(tweets.length);
 			});
 		});
 
