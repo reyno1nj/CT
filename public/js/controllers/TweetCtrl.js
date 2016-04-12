@@ -1,8 +1,8 @@
-// public/js/MainCtrl.js
+// public/js/TweetCtrl.js
 
 angular.module('TweetCtrl', []).controller('TweetController', function($scope, Tweet) {
 
-    //$scope.tagline = Tweet.get();
+    //use TweetService Tweet to get DB data for display
     $scope.tweets = null;
     Tweet.get().then(function(response){
     	$scope.tweets = response.data;
