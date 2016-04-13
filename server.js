@@ -54,26 +54,26 @@ var client = new Twitter({
   access_token_key: '712102656307757056-CZmHQ0w4Jwwq0dX4GfIHycXU2GDEp59',
   access_token_secret: 'uJPSKjHIlCbCU03Vl1yDqJnMWgDRkwO7iigKLJV2MYQnU'
 });
-// var candidate = 'Clinton'
-// client.stream('statuses/filter', {track: candidate}, function(stream) {
-//   stream.on('data', function(tweet) {
-//     //console.log(tweet.text);
-//     var newTweet = new TweetModel({
-//       text: tweet.text,
-//       favCount: tweet.favorite_count,
-//       rtCount: tweet.retweet_count,
-//       createdAt: tweet.created_at,
-//       candidateAbout: candidate
-//     });
-//     newTweet.save(function(err){
-//       if (err) throw err;
+var candidate = 'Clinton'
+client.stream('statuses/filter', {track: candidate}, function(stream) {
+  stream.on('data', function(tweet) {
+    //console.log(tweet.text);
+    var newTweet = new TweetModel({
+      text: tweet.text,
+      favCount: tweet.favorite_count,
+      rtCount: tweet.retweet_count,
+      createdAt: tweet.created_at,
+      candidateAbout: candidate
+    });
+    newTweet.save(function(err){
+      if (err) throw err;
 
-//       console.log('Tweet created');
-//     });
-//   });
+      console.log('Tweet created');
+    });
+  });
  
-//   stream.on('error', function(error) {
-//     console.log("error");
-//     throw error;
-//   });
-// });
+  stream.on('error', function(error) {
+    console.log("error");
+    throw error;
+  });
+});
