@@ -1,3 +1,3 @@
 module.exports = {
-	url : 'mongodb://localhost/tweets'
+	url : process.env.MONGOLAB_URI || 'mongodb://localhost/tweets'
 }
