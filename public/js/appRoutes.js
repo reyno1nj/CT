@@ -13,6 +13,18 @@
         .when('/Tweets', {
             templateUrl: 'views/tweets.html',
             controller: 'TweetController'
+        })
+        .when('/Clinton', {
+            templateUrl: 'views/clinton.html',
+            controller: 'ClintonController'
+        })
+        .when('/Sanders', {
+            templateUrl: 'views/sanders.html',
+            controller: 'SandersController'
+        })
+        .when('/Cruz', {
+            templateUrl: 'views/cruz.html',
+            controller: 'CruzController'
         });
 
     $locationProvider.html5Mode(true);

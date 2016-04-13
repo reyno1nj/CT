@@ -2,11 +2,11 @@
 angular.module('TweetService', []).factory('Tweet', ['$http', function($http) {
 
     return {
+        
         // call to get all tweets
-        get : function() {
-            return $http.get('/api/tweet');
+        get : function(candidate) {
+            return $http.get('/api/tweet', {params:{"candidate": candidate}});
         },
-
 
         // these will work when more API routes are defined on the Node side of things
         // call to POST and create a new tweet

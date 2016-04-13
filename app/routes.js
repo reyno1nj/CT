@@ -8,7 +8,8 @@ var Tweet = require('./models/tweet');
 
 		// api route
 		app.get('/api/tweet', function(req, res){
-			Tweet.find(function(err, tweets){
+			Tweet.find({candidateAbout:req.query.candidate}, function(err, tweets){
+				console.log(req.query);
 				//if there's an err, return
 				if(err)
 					res.send(err);

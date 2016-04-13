@@ -1,10 +1,10 @@
 // public/js/TweetCtrl.js
 
-angular.module('TweetCtrl', []).controller('TweetController', function($scope, Tweet) {
+angular.module('ClintonCtrl', []).controller('ClintonController', function($scope, Tweet) {
 
     //use TweetService Tweet to get DB data for display
     $scope.tweets = null;
-    Tweet.get("Trump").then(function(response){
+    Tweet.get("Clinton").then(function(response){
     	$scope.tweets = response.data;
     })
     //$scope.tagline = "something"
