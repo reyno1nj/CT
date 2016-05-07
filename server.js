@@ -48,12 +48,7 @@ exports = module.exports = app;
 
 var TweetModel = require('./app/models/tweet');
 
-var client = new Twitter({
-  consumer_key: 'wE9ShFch9jvpKUVj4lWjGC4lz',
-  consumer_secret: '8hZDSQnTA0vikfPXVJnUflpm34iCNLFk055wvTpSUQ8tXOYjDR',
-  access_token_key: '712102656307757056-CZmHQ0w4Jwwq0dX4GfIHycXU2GDEp59',
-  access_token_secret: 'uJPSKjHIlCbCU03Vl1yDqJnMWgDRkwO7iigKLJV2MYQnU'
-});
+
 // var candidate = 'Sanders'
 // client.stream('statuses/filter', {track: candidate}, function(stream) {
 //   stream.on('data', function(tweet) {
